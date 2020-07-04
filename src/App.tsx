@@ -5,6 +5,7 @@ import { GlobalStyle } from './styles/GlobalStyle'
 
 import Header from './components/Header'
 import { defaultTheme } from './styles/theme'
+import Layout from './components/Layout'
 
 const mainElement = document.createElement('div')
 mainElement.setAttribute('id', 'root')
@@ -15,6 +16,7 @@ const App = () => {
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
       <Header />
+      <Layout />
     </ThemeProvider>
   )
 }
