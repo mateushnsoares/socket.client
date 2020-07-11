@@ -1,6 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
+import { remote } from 'electron'
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --window-width: ${() => `${remote.getCurrentWindow().getBounds().width}px`}
+  }
+
   * {
     margin: 0;
     padding: 0;

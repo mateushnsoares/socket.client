@@ -5,7 +5,6 @@ import { FiX, FiMinus, FiMaximize2, FiSquare } from 'react-icons/fi'
 
 import { Container, WindowActions, MacActionButton, DefaultActionButton } from './styles'
 import { useConfig } from '../../hooks/useConfig'
-import { config } from '../../store/config'
 
 const Header: React.FC = () => {
   const handleCloseWindow = useCallback(() => {

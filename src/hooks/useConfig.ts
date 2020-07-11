@@ -8,7 +8,7 @@ export function useConfig<K extends keyof Schema> (key: K): Schema[K]['default']
   const [value, setValue] = useState<Schema[K]['default']>(defaultValue)
 
   useEffect(() => {
-    const unsubscribe = config.onDidChange(key, (newValue: any) => {
+    const unsubscribe = config.onDidChange(key, (newValue) => {
       setValue(newValue as Schema[K]['default'])
     })
 

@@ -8,8 +8,7 @@
   "extends": [
     "standard",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,7 +20,6 @@
   },
   "plugins": [
     "react",
-    "prettier",
     "@typescript-eslint"
   ],
   "rules": {
@@ -37,7 +35,7 @@
   },
   "settings": {
     "import/resolver": {
-      "typescript": {} 
+      "typescript": {}
     }
   }
 }
