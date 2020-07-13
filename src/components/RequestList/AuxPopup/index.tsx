@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react'
+import React, { useRef, useContext } from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { Container, CreateRequest, CreateFolderRemove } from './styles'
@@ -22,9 +22,6 @@ const AuxPopup: React.FC<Props> = (props) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [Requests, setCachedRequests] = useCache<Request[]>('requests')
   const [Folders, setFolders] = useCache<Folder[]>('folders')
-  useEffect(() => {
-    console.log(props.FolderOrDeleteOrBoth)
-  }, [props.FolderOrDeleteOrBoth])
   const {
     setNewRequestFolderPopupDisplay,
     setRequest

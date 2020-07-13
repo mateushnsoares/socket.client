@@ -43,7 +43,7 @@ const Header: React.FC = () => {
 
   return (
     <Container>
-      <strong>Socket.Client</strong>
+      <strong>Socket Client</strong>
 
       {shouldUseMacOSWindowActions ? (
         <WindowActions position="left">

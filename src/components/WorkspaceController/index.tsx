@@ -6,7 +6,7 @@ import { config } from '../../store/config'
 const WorkspaceController: React.FC = () => {
   return (
     <Workspace>
-      Socket.Client
+      Socket Client
       <Settings onClick={() => {
         config.openInEditor()
       }} />

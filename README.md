@@ -1,4 +1,4 @@
-# Socket.Client
+# Socket Client
 A Electron WebSocket Client.
 
 ## Installation
