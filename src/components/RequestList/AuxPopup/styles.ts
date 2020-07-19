@@ -9,7 +9,8 @@ interface ContainerProps {
 export const Container = styled.div<ContainerProps>`
   display: ${props => props.display};
   flex-direction: column;
-  z-index: 10;
+  position: absolute;
+  z-index: 50;
   padding: 20px;
   padding-bottom: 15px;
   width: 200px;
@@ -24,7 +25,7 @@ export const CreateRequest = styled.button`
   flex-direction: row;
   border: 0;
   background-color: ${props => props.theme.backgrounds.darkest};
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   outline: none;
 `
 
@@ -33,6 +34,6 @@ export const CreateFolderRemove = styled.button`
   flex-direction: row;
   border: 0;
   background-color: ${props => props.theme.backgrounds.darkest};
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   outline: none;
 `

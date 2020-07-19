@@ -31,7 +31,7 @@ export const Input = styled.input`
 export const Select = styled.select`
   border: 0;
   background-color: #111;
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   outline: none;
   margin-right: 15px;
 `
@@ -49,7 +49,7 @@ export const Option = styled.option<OptionProps>`
 export const SubmitButton = styled.button`
   border: 0;
   background-color: ${props => props.theme.colors.purple};
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   font-size: 18px;
   padding: 4px;
 `

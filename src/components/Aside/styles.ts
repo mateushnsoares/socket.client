@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  grid-area: AS;
+  flex: 0.7;
   display: flex;
   flex-direction: column;
   border-right: 1px solid ${props => props.theme.backgrounds.lightest};

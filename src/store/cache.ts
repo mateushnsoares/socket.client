@@ -29,7 +29,7 @@ class Cache {
 
     obj[key] = value
 
-    fs.writeFileSync(this.cacheFile, JSON.stringify(obj))
+    fs.writeFileSync(this.cacheFile, JSON.stringify(obj, undefined, 2))
   }
 }
 

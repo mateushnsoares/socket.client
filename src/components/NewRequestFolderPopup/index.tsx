@@ -51,7 +51,11 @@ const NewRequestFolderPopup: React.FC<Props> = (
               ? Folders
                 .find(
                   folder => folder.id === folderId
-                ) ? folderId : null : null
+                ) ? folderId : null : null,
+            url: '',
+            body: '',
+            message: '',
+            selected: false
           }
         ]
       )

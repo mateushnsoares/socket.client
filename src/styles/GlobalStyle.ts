@@ -6,6 +6,11 @@ export const GlobalStyle = createGlobalStyle`
     --window-width: ${() => `${remote.getCurrentWindow().getBounds().width}px`}
   }
 
+
+  html, body, #root {
+    overflow: hidden;
+  }
+
   * {
     margin: 0;
     padding: 0;
@@ -13,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-family: sans-serif;
     flex: 1;
     width: 100vw;
     height: 100vh;

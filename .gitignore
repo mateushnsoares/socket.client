@@ -1,8 +1,11 @@
 node_modules
 dist
 
-package-*.json*
+package-*.json
+package-*.json.*
 package.json.*
 
 yarn.lock
 yarn-*.log
+
+.vscode

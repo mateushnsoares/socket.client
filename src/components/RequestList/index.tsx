@@ -1,8 +1,20 @@
-import React, { useRef, MouseEvent, useEffect, useState, Dispatch, SetStateAction } from 'react'
+import React, {
+  useRef,
+  MouseEvent,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction
+} from 'react'
 
 import RequestListContext from './RequestListContext'
 
-import { Container, RequestFolderContainer, RequestFolderName, RequestType } from './styles'
+import {
+  Container,
+  RequestFolderContainer,
+  RequestFolderName,
+  RequestType
+} from './styles'
 import Request from '../../types/Request'
 
 import useCache from '../../hooks/useCache'
@@ -24,7 +36,7 @@ const RequestList: React.FC<Props> = (
   }
 ) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [Requests] = useCache<Request[]>('requests')
+  const [Requests, setRequests] = useCache<Request[]>('requests')
   const [Folders, setFolders] = useCache<Folder[]>('folders')
   const [FolderOrDeleteOrBoth, setFolderOrDeleteOrBoth] = useState<'folder' | 'delete' | 'both'>('folder')
   const [FolderOrRequest, setFolderOrRequest] = useState<'folder' | 'request'>('folder')
@@ -141,6 +153,27 @@ const RequestList: React.FC<Props> = (
     setLeft(e.pageX)
   }
 
+  function handleRequestClick (request: Request) {
+    setRequests(
+      Requests
+        .map(requestOfMap => (
+          {
+            ...requestOfMap,
+            selected:
+              requestOfMap === request
+                ? !!request.selected
+                : false
+          })
+        )
+        .map(
+          requestOfMap =>
+            requestOfMap.id === request.id
+              ? { ...requestOfMap, selected: !requestOfMap.selected }
+              : requestOfMap
+        )
+    )
+  }
+
   return (
     <RequestListContext.Provider
       value={
@@ -155,19 +188,42 @@ const RequestList: React.FC<Props> = (
         Requests
         ?.filter(request => request.folderId === null)
         ?.map(request => (
-          <RequestFolderContainer key={request.id} onAuxClick={
-            (e) => handleFolderRequestAuxClick(e, request.id, 'request')
-          }>
+          <RequestFolderContainer
+            key={request.id}
+            onAuxClick={
+              (e) => handleFolderRequestAuxClick(e, request.id, 'request')
+            }
+            onClick={() => handleRequestClick(request)}
+            selected={request.selected}>
             <RequestType type={request.type}>
               {
                 request.type.toUpperCase()
               }
             </RequestType>
-            <RequestFolderName>
-              {
-                request.name
+            <RequestFolderName
+              maxLength={20}
+              selected={request.selected}
+              onChange={
+                e => {
+                  const editedRequest = Requests.filter(
+                    requestOfMap => requestOfMap.id === request.id
+                  )[0]
+                  const index = Requests.indexOf(
+                    Requests
+                      .find(
+                        request => request.id === editedRequest.id
+                      ) || {} as Request
+                  )
+
+                  Requests[index].name =
+                    e.currentTarget.value || Requests[index].name
+                  setRequests(
+                    Requests
+                  )
+                }
               }
-            </RequestFolderName>
+              value={request.name}
+            />
           </RequestFolderContainer>
         ))
         }
@@ -187,10 +243,29 @@ const RequestList: React.FC<Props> = (
                   ? <MdFolderOpen size={20} style={{ marginRight: 10 }}/>
                   : <MdFolder size={20} style={{ marginRight: 10 }}/>
               }
-              <RequestFolderName>
-                {
-                  folder.name
+              <RequestFolderName
+                maxLength={20}
+                onChange={
+                  e => {
+                    const editedFolder = Folders.filter(
+                      folderOfMap => folderOfMap.id === folder.id
+                    )[0]
+                    const index = Folders.indexOf(
+                      Folders
+                        .find(
+                          folder => folder.id === editedFolder.id
+                        ) || {} as Folder
+                    )
+
+                    Folders[index].name =
+                      e.currentTarget.value || Folders[index].name
+                    setFolders(
+                      Folders
+                    )
+                  }
                 }
+                value={folder.name}
+              >
               </RequestFolderName>
             </RequestFolderContainer>
             {
@@ -198,19 +273,43 @@ const RequestList: React.FC<Props> = (
                 Requests.filter(
                   request => request.folderId === folder.id
                 ).map(request => (
-                  <RequestFolderContainer key={request.id} onAuxClick={
-                    (e) => handleFolderRequestAuxClick(e, request.id, 'request')
-                  }>
+                  <RequestFolderContainer
+                    key={request.id}
+                    onClick={() => handleRequestClick(request)}
+                    onAuxClick={
+                      (e) => handleFolderRequestAuxClick(e, request.id, 'request')
+                    }
+                    selected={request.selected}
+                  >
                     <RequestType type={request.type}>
                       {
                         request.type.toUpperCase()
                       }
                     </RequestType>
-                    <RequestFolderName>
-                      {
-                        request.name
+                    <RequestFolderName
+                      maxLength={20}
+                      selected={request.selected}
+                      onChange={
+                        e => {
+                          const editedRequest = Requests.filter(
+                            requestOfMap => requestOfMap.id === request.id
+                          )[0]
+                          const index = Requests.indexOf(
+                            Requests
+                              .find(
+                                request => request.id === editedRequest.id
+                              ) || {} as Request
+                          )
+
+                          Requests[index].name =
+                            e.currentTarget.value || Requests[index].name
+                          setRequests(
+                            Requests
+                          )
+                        }
                       }
-                    </RequestFolderName>
+                      value={request.name}
+                    />
                   </RequestFolderContainer>
                 ))
               )
