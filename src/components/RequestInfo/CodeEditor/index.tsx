@@ -1,7 +1,5 @@
 import React, {
   useEffect,
-  useImperativeHandle,
-  forwardRef,
   useRef
 } from 'react'
 import Prism from 'prismjs'
@@ -14,6 +12,7 @@ import {
   CodeHelper,
   BeautifyButton
 } from './styles'
+import { FiAlignLeft } from 'react-icons/fi'
 
 export interface CodeEditorProps {
   value: string
@@ -65,7 +64,7 @@ const CodeEditor:
               }
             }
           >
-            Beautify JSON
+            <FiAlignLeft size={15}/>
           </BeautifyButton>
         </CodeHelper>
       </Container>

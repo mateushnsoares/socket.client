@@ -131,7 +131,7 @@ export const CodeHelper = styled.div`
 export const BeautifyButton = styled.button`
   display: flex;
   border: 0;
-  padding: 0 15px;
+  padding: 0 15px 10px 15px;
   height: 210% !important;
   background-color: ${props => props.theme.backgrounds.darkest};
   color: #fff;
@@ -139,5 +139,21 @@ export const BeautifyButton = styled.button`
   outline: none;
   &:hover {
     background-color: ${props => props.theme.backgrounds.lightest};
+  }
+  &:hover::after {
+    margin-left: 5px;
+    content: 'Beautify JSON';
+  }
+  line[y1="10"] {
+    color: ${props => lighten(0.08, saturate(3, props.theme.colors.yellow))};
+  }
+  line[y1="6"] {
+    color: ${props => darken(0.2, saturate(2, props.theme.colors.green))};
+  }
+  line[y1="14"] {
+    color: ${props => darken(0.2, saturate(2, props.theme.colors.green))};
+  }
+  line[y1="18"] {
+    color: ${props => darken(0.2, saturate(2, props.theme.colors.yellow))};
   }
 `
